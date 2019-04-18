@@ -28,16 +28,6 @@ public class EnquantoBaseListener implements EnquantoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOrLogico(EnquantoPaser.OrLogicoContext ctx) {}
-	
-	
-	@Override public void exitOrLogico(EnquantoPaser.OrLogicoContext ctx) {}
-	
-	@Override public void enterXorLogico(EnquantoParser.XorLogicoContext ctx) { }
-	
-	@Override public void exitXorLogico(EnquantoParser.XorLogicoContext ctx) { }
-	
-	
 	@Override public void enterSeqComando(EnquantoParser.SeqComandoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -206,7 +196,33 @@ public class EnquantoBaseListener implements EnquantoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOrLogico(EnquantoParser.OrLogicoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOrLogico(EnquantoParser.OrLogicoContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	
 	@Override public void enterBooleano(EnquantoParser.BooleanoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterXorLogico(EnquantoParser.XorLogicoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitXorLogico(EnquantoParser.XorLogicoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

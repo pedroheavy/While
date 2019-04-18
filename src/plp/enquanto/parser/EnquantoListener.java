@@ -224,6 +224,30 @@ public interface EnquantoListener extends ParseTreeListener {
 	 * labeled alternative in {@link EnquantoParser#bool}.
 	 * @param ctx the parse tree
 	 */
+	void enterOrLogico(EnquantoParser.OrLogicoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolPar}
+	 * labeled alternative in {@link EnquantoParser#bool}.
+	 * @param ctx the parse tree
+	 */
+	void exitOrLogico(EnquantoParser.OrLogicoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolPar}
+	 * labeled alternative in {@link EnquantoParser#bool}.
+	 * @param ctx the parse tree
+	 */
+	void enterXorLogico(EnquantoParser.XorLogicoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolPar}
+	 * labeled alternative in {@link EnquantoParser#bool}.
+	 * @param ctx the parse tree
+	 */
+	void exitXorLogico(EnquantoParser.XorLogicoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolPar}
+	 * labeled alternative in {@link EnquantoParser#bool}.
+	 * @param ctx the parse tree
+	 */
 	void enterBoolPar(EnquantoParser.BoolParContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code boolPar}

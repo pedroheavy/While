@@ -636,6 +636,40 @@ public class EnquantoParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
+	public static class XorLogicoContext extends BoolContext {
+		public List<BoolContext> bool() {
+			return getRuleContexts(BoolContext.class);
+		}
+		public BoolContext bool(int i) {
+			return getRuleContext(BoolContext.class,i);
+		}
+		public XorLogicoContext(BoolContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof EnquantoListener ) ((EnquantoListener)listener).enterXorLogico(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof EnquantoListener ) ((EnquantoListener)listener).exitXorLogico(this);
+		}
+	}
+	public static class OrLogicoContext extends BoolContext {
+		public List<BoolContext> bool() {
+			return getRuleContexts(BoolContext.class);
+		}
+		public BoolContext bool(int i) {
+			return getRuleContext(BoolContext.class,i);
+		}
+		public OrLogicoContext(BoolContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof EnquantoListener ) ((EnquantoListener)listener).enterOrLogico(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof EnquantoListener ) ((EnquantoListener)listener).exitOrLogico(this);
+		}
+	}
 	public static class ELogicoContext extends BoolContext {
 		public List<BoolContext> bool() {
 			return getRuleContexts(BoolContext.class);
