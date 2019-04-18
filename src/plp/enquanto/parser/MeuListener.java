@@ -2,6 +2,7 @@ package plp.enquanto.parser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
@@ -60,6 +61,22 @@ public class MeuListener extends EnquantoBaseListener {
 		final Expressao exp = (Expressao) getValue(ctx.expressao());
 		setValue(ctx, new Escreva(exp));
 	}
+	
+	public void exitSe(final EnquantoParser.SeContext ctx) {
+		final Bool condicao = (Bool) getValue(ctx.bool(0));
+		final Map<Bool, Comando> sns = new HashMap<Bool, Comando>();
+
+		for (int i = 1; i < ctx.bool().size(); i++) {
+			sns.put(
+					(Bool) getValue(ctx.bool(i)),
+					(Comando) getValue(ctx.comando(i))
+					);
+		}
+		final Comando senao = (Comando) getValue(ctx.comando(ctx.comando().size()-1));
+		setValue(ctx, new Se(condicao, entao, sns, senao));
+	}
+	
+	
 
 	@Override
 	public void exitPrograma(final EnquantoParser.ProgramaContext ctx) {

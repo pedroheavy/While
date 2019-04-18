@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.*;
+import plp.enquanto.*;
 
 public interface Linguagem {
 	final Map<String, Integer> ambiente = new HashMap<>();
@@ -73,19 +75,34 @@ public interface Linguagem {
 		private Bool condicao;
 		private Comando entao;
 		private Comando senao;
+		private Map<Bool, Comando>sinaose;
+		
 
-		public Se(Bool condicao, Comando entao, Comando senao) {
+		public Se(Bool condicao, Comando entao, Map<Bool, Comando>sinaose, Comando senao) {
 			this.condicao = condicao;
 			this.entao = entao;
 			this.senao = senao;
+			this.sinaose = sinaose;
 		}
 
 		@Override
 		public void execute() {
-			if (condicao.getValor())
+			if (condicao.getValor()) {
 				entao.execute();
-			else
+			} else {
+				Iterator<Bool> condicoes = sinaose.keySet().iterator();
+				while(condicoes.hasNext()) {
+					Bool sns = condicoes.next();
+					if(sns.getValor()) {
+						sinaose.get(sns).execute();
+						return;
+					}
+					
+				}
 				senao.execute();
+			}
+			
+				
 		}
 	}
 
