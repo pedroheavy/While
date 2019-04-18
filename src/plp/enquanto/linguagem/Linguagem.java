@@ -59,9 +59,7 @@ public interface Linguagem {
 		}
 		@Override
 		public int getValor() {
-			double n1 = (double) esq.getValor();
-			double n2 = (double) dir.getValor();
-			return (int) Math.pow(n1, n2);
+			return (int) Math.pow(esq.getValor(), dir.getValor());
 		}
 	}
 	
@@ -77,6 +75,31 @@ public interface Linguagem {
 			return esq.getValor() || dir.getValor();
 		}
 	}
+	
+	//Q4
+	public class XorLogico implements Bool{
+		private Bool esq, dir;
+		public XorLogico(Bool esq, Bool dir) {
+			this.esq = esq;
+			this.dir = dir;
+		}
+		@Override
+		public boolean getValor() {
+			return (esq.getValor() != dir.getValor());
+		}
+	}
+	
+	//Q5
+	public class ExpMaiorIgual extends ExpRel{
+		public ExpMaiorIgual(Expressao dir, Expressao esq) {
+			super(esq, dir);
+		}
+		@Override
+		public boolean getValor() {
+			return esq.getValor() >= dir.getValor();
+		}
+	}
+
 
 	class Se implements Comando {
 		private Bool condicao;
