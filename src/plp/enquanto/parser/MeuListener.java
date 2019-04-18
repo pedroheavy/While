@@ -82,6 +82,19 @@ public class MeuListener extends EnquantoBaseListener {
 		}
 		setValue(ctx, comandos);
 	}
+	
+	@Override
+	public void exitOrLogico(OuLogicoContext ctx) {
+		final Bool esq = (Bool) getValue(ctx.bool(0));
+		final Bool dir = (Bool) getValue(ctx.bool(1));
+		setValue(ctx, new OrLogico(esq, dir));
+	}
+	@Override
+	public void exitXorLogico(XorLogicoContext ctx) {
+		final Bool esq = (Bool) getValue(ctx.bool(0));
+		final Bool dir = (Bool) getValue(ctx.bool(1));
+		setValue(ctx, new XorLogico(esq, dir));
+	}
 
 	@Override
 	public void exitAtribuicao(final EnquantoParser.AtribuicaoContext ctx) {
@@ -109,6 +122,12 @@ public class MeuListener extends EnquantoBaseListener {
 			break;
 		case "*":
 			exp = new ExpMult(esq, dir);
+			break;
+		case "/":
+			exp = new ExpDiv(esq, dir);
+			break;
+		case "^":
+			exp = new ExpExp(esq, dir);
 			break;
 		case "-":
 			exp = new ExpSub(esq, dir);
@@ -169,6 +188,13 @@ public class MeuListener extends EnquantoBaseListener {
 		case "<=":
 			exp = new ExpMenorIgual(esq, dir);
 			break;
+		case ">=":
+			exp = new ExpMaiorIgual(esq, dir);
+			break;
+		case "<>":
+			exp = new ExpDiferente(esq, dir);
+			break;
+		
 		default:
 			exp = new ExpIgual(esq, dir);
 		}

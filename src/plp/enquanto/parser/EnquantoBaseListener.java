@@ -28,6 +28,16 @@ public class EnquantoBaseListener implements EnquantoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOrLogico(EnquantoPaser.OrLogicoContext ctx) {}
+	
+	
+	@Override public void exitOrLogico(EnquantoPaser.OrLogicoContext ctx) {}
+	
+	@Override public void enterXorLogico(EnquantoParser.XorLogicoContext ctx) { }
+	
+	@Override public void exitXorLogico(EnquantoParser.XorLogicoContext ctx) { }
+	
+	
 	@Override public void enterSeqComando(EnquantoParser.SeqComandoContext ctx) { }
 	/**
 	 * {@inheritDoc}
