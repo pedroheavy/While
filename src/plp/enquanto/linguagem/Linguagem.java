@@ -9,6 +9,7 @@ import plp.enquanto.*;
 
 public interface Linguagem {
 	final Map<String, Integer> ambiente = new HashMap<>();
+	final Map<String, DefFuncao> deff = new HashMap<>();
 	final Scanner scanner = new Scanner(System.in);
 
 	interface Bool {
@@ -69,7 +70,54 @@ public interface Linguagem {
 		}
 	}
 	
-	
+	class DefFuncao implements Comando {
+		private Id nm;
+		private List<Id> parametros;
+		private Expressao expressao;
+
+		public DefFuncao (Id nome, List<Id> parametros, Expressao expressao) {
+			this.nm = nome;
+			this.parametros = parametros;
+			this.expressao = expressao;
+		}
+
+		public int chamada(List<Expressao> valores) throws Exception {
+			if (valores.size() == parametros.size()) {
+				for (int i = 0; i < parametros.size(); i++) {
+					ambiente.put(parametros.get(i).id, valores.get(i).getValor());
+				}
+				return expressao.getValor();
+			} else {
+				throw new Exception("Quantidade de parametros errada");
+			}
+		}
+
+		@Override
+		public void execute() {
+			deff.put(nm.id, this);
+		}
+	}
+
+	class ChamadaFuncao implements Expressao {
+		private Id nome;
+		private List<Expressao> valores;
+
+		public ChamadaFuncao (Id nome, List<Expressao> valores) {
+			this.nome = nome;
+			this.valores = valores;
+		}
+
+		@Override
+		public int getValor() {
+			try {
+				return deff.get(nome.id).chamada(valores);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return -1;
+			}
+		}
+	}
+
 	
 	class Se implements Comando {
 		private Bool condicao;
@@ -156,6 +204,7 @@ public interface Linguagem {
 		}
 	}
 
+	
 	
 	
 	class Escolha implements Comando {

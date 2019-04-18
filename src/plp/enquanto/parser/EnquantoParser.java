@@ -636,6 +636,30 @@ public class EnquantoParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
+	
+	
+	
+	public static class SeContext extends ComandoContext {
+		public BoolContext bool() {
+			return getRuleContext(BoolContext.class,0);
+		}
+		public List<ComandoContext> comando() {
+			return getRuleContexts(ComandoContext.class);
+		}
+		public ComandoContext comando(int i) {
+			return getRuleContext(ComandoContext.class,i);
+		}
+		public SeContext(ComandoContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof EnquantoListener ) ((EnquantoListener)listener).enterSe(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof EnquantoListener ) ((EnquantoListener)listener).exitSe(this);
+		}
+	}
+	
 	public static class XorLogicoContext extends BoolContext {
 		public List<BoolContext> bool() {
 			return getRuleContexts(BoolContext.class);

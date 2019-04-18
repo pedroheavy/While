@@ -1,5 +1,5 @@
-a := 1;
-escolha a
-	  caso 1 : exiba "um"
-      caso 2 : exiba "dois"
-      outro  : exiba "outro numero"
+soma(a, b) = a * b;
+escreva soma(1, 2);
+escreva soma(3, 2);
+escreva soma(66, 4);
+escreva soma(2, 2) 

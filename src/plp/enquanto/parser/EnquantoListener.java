@@ -248,6 +248,19 @@ public interface EnquantoListener extends ParseTreeListener {
 	 * labeled alternative in {@link EnquantoParser#bool}.
 	 * @param ctx the parse tree
 	 */
+	
+	void enterSe(EnquantoParser.SeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolPar}
+	 * labeled alternative in {@link EnquantoParser#bool}.
+	 * @param ctx the parse tree
+	 */
+	void exitSe(EnquantoParser.SeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolPar}
+	 * labeled alternative in {@link EnquantoParser#bool}.
+	 * @param ctx the parse tree
+	 */
 	void enterBoolPar(EnquantoParser.BoolParContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code boolPar}

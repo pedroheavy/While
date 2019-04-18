@@ -13,17 +13,17 @@ comando: ID ':=' expressao                          # atribuicao
        | 'escreva' expressao                        # escreva
        | '{' seqComando '}'                         # bloco
        |'para' ID 'de' expressao 'ate' expressao ('passo' INT)? 'faca' comando		#para
+       | ID '(' (ID (',' ID)*)? ')' '=' expressao
        ;
 
 expressao: INT                                      # inteiro
          | 'leia'                                   # leia
          | ID                                       # id
-         | expressao '*' expressao                  # opBin
-         | expressao '+' expressao                  # opBin
-         | expressao '-' expressao                  # opBin
-         | expressao '/' expressao                  # opBin
-         | expressao '^' expressao                  # opBin
+         | expressao ('^') expressao				# opBin
+         | expressao ('*'|'/') expressao            # opBin
+         | expressao ('+'|'-') expressao            # opBin       
          | '(' expressao ')'                        # expPar
+          | ID '(' (expressao (',' expressao)*)? ')'	# chamadaFuncao
          ;
 
 bool: ('verdadeiro'|'falso')                        # booleano
