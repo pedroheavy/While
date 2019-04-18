@@ -42,74 +42,33 @@ public interface Linguagem {
 			}
 		}
 	}
-	//Q1
-	class ExpDiv extends ExpBin{
-		public ExpDiv(Expressao esq, Expressao dir) {
-			super(esq, dir);
-		}
-		@Override
-		public int getValor() {
-			return esq.getValor() / dir.getValor();
-		}
-	}
-	//Q2
-	class ExpExp extends ExpBin{
-		public ExpExp(Expressao esq,Expressao dir) {
-			super(esq, dir);
-		}
-		@Override
-		public int getValor() {
-			return (int) Math.pow(esq.getValor(), dir.getValor());
-		}
-	}
-	
-	//Q3
-	public class OrLogico implements Bool{
-		private Bool esq, dir;
-		public OrLogico(Bool esq, Bool dir) {
-			this.esq = esq;
-			this.dir = dir;
-		}
-		@Override
-		public boolean getValor() {
-			return esq.getValor() || dir.getValor();
-		}
-	}
-	
-	//Q4
-	public class XorLogico implements Bool{
-		private Bool esq, dir;
-		public XorLogico(Bool esq, Bool dir) {
-			this.esq = esq;
-			this.dir = dir;
-		}
-		@Override
-		public boolean getValor() {
-			return (esq.getValor() != dir.getValor());
-		}
-	}
-	
-	//Q5
-	public class ExpMaiorIgual extends ExpRel{
-		public ExpMaiorIgual(Expressao dir, Expressao esq) {
-			super(esq, dir);
-		}
-		@Override
-		public boolean getValor() {
-			return esq.getValor() >= dir.getValor();
-		}
-	}
-	//Q6
-	public class ExpDiferente extends ExpRel{
-		public ExpDiferente(Expressao esq, Expressao dir) {
-			super(esq, dir);
-		}
-		@Override
-		public boolean getValor() {
-			return esq.getValor() != dir.getValor();
-		}
-	}
 
+	
+	class Para implements Comando{
+		private Id id;
+		private Expressao esq;
+		private Expressao dir;
+		private Comando faca;
+		private Inteiro passo;
+		
+		public Para(Id id, Expressao esq, Expressao dir, Comando faca, Inteiro passo) {
+			this.id = id;
+			this.esq = esq;
+			this.dir = dir;
+			this.faca = faca;
+			this.passo = passo;
+		}
+		@Override
+		public void execute() {
+			for(int i = esq.getValor(); i <= dir.getValor(); i+=passo.getValor()) {
+				ambiente.put(id.id, i);
+				faca.execute();
+			}
+		}
+	}
+	
+	
+	
 	class Se implements Comando {
 		private Bool condicao;
 		private Comando entao;
@@ -319,6 +278,75 @@ public interface Linguagem {
 		}
 
 	}
+	//Q1
+	class ExpDiv extends ExpBin{
+		public ExpDiv(Expressao esq, Expressao dir) {
+			super(esq, dir);
+		}
+		@Override
+		public int getValor() {
+			return esq.getValor() / dir.getValor();
+		}
+	}
+	//Q2
+	class ExpExp extends ExpBin{
+		public ExpExp(Expressao esq,Expressao dir) {
+			super(esq, dir);
+		}
+		@Override
+		public int getValor() {
+			return (int) Math.pow(esq.getValor(), dir.getValor());
+		}
+	}
+	
+	//Q3
+	public class OrLogico implements Bool{
+		private Bool esq, dir;
+		public OrLogico(Bool esq, Bool dir) {
+			this.esq = esq;
+			this.dir = dir;
+		}
+		@Override
+		public boolean getValor() {
+			return esq.getValor() || dir.getValor();
+		}
+	}
+	
+	//Q4
+	public class XorLogico implements Bool{
+		private Bool esq, dir;
+		public XorLogico(Bool esq, Bool dir) {
+			this.esq = esq;
+			this.dir = dir;
+		}
+		@Override
+		public boolean getValor() {
+			return (esq.getValor() != dir.getValor());
+		}
+	}
+	
+	//Q5
+	public class ExpMaiorIgual extends ExpRel{
+		public ExpMaiorIgual(Expressao dir, Expressao esq) {
+			super(esq, dir);
+		}
+		@Override
+		public boolean getValor() {
+			return esq.getValor() >= dir.getValor();
+		}
+	}
+	//Q6
+	public class ExpDiferente extends ExpRel{
+		public ExpDiferente(Expressao esq, Expressao dir) {
+			super(esq, dir);
+		}
+		
+		@Override
+		public boolean getValor() {
+			return esq.getValor() != dir.getValor();
+		}
+	}
+
 
 	public class ExpMenorIgual extends ExpRel {
 		public ExpMenorIgual(Expressao esq, Expressao dir) {
