@@ -6,8 +6,9 @@ seqComando: comando (';' comando)* ;
 
 comando: ID ':=' expressao                          # atribuicao
        | 'skip'                                     # skip
-       | 'se' bool 'entao' comando ('senaose' bool 'entao' comando)*? 'senao' comando  # se
-       | 'enquanto' bool 'faca' comando             # enquanto
+       | 'se' bool 'entao' comando ('senaose' bool 'entao' comando)*? 'senao' comando	# se
+       | 'enquanto' bool 'faca' comando 												#enquanto
+       | 'escolha' ID ('caso' expressao ':' comando )*? 'outro' ':' comando   
        | 'exiba' Texto                              # exiba
        | 'escreva' expressao                        # escreva
        | '{' seqComando '}'                         # bloco

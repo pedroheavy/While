@@ -156,6 +156,34 @@ public interface Linguagem {
 		}
 	}
 
+	
+	
+	class Escolha implements Comando {
+		private Id in;
+        private Map<Expressao, Comando> c;
+        private Comando sai;
+
+		public Escolha(Id in, Map<Expressao, Comando> c, Comando sai) {
+			this.in = in;
+			this.c = c;
+			this.sai = sai;
+		}
+
+		@Override
+		public void execute() {
+			int valor = in.getValor();
+			for (Expressao exp : c.keySet()) {
+                if (exp.getValor() == valor) {
+                    c.get(exp).execute();
+                    return;
+                }
+			}
+			sai.execute();
+		}
+
+	}
+	
+	
 	class Bloco implements Comando {
 		private List<Comando> comandos;
 
