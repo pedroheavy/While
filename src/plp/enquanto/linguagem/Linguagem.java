@@ -64,6 +64,19 @@ public interface Linguagem {
 			return (int) Math.pow(n1, n2);
 		}
 	}
+	
+	//Q3
+	public class OrLogico implements Bool{
+		private Bool esq, dir;
+		public OrLogico(Bool esq, Bool dir) {
+			this.esq = esq;
+			this.dir = dir;
+		}
+		@Override
+		public boolean getValor() {
+			return esq.getValor() || dir.getValor();
+		}
+	}
 
 	class Se implements Comando {
 		private Bool condicao;
