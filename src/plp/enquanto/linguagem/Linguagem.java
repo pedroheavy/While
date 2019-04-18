@@ -42,6 +42,7 @@ public interface Linguagem {
 			}
 		}
 	}
+	//Q1
 	class ExpDiv extends ExpBin{
 		public ExpDiv(Expressao esq, Expressao dir) {
 			super(esq, dir);
@@ -49,6 +50,18 @@ public interface Linguagem {
 		@Override
 		public int getValor() {
 			return esq.getValor() / dir.getValor();
+		}
+	}
+	//Q2
+	class ExpExp extends ExpBin{
+		public ExpExp(Expressao esq,Expressao dir) {
+			super(esq, dir);
+		}
+		@Override
+		public int getValor() {
+			double n1 = (double) esq.getValor();
+			double n2 = (double) dir.getValor();
+			return (int) Math.pow(n1, n2);
 		}
 	}
 
