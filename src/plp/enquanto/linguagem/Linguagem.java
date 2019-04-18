@@ -99,7 +99,16 @@ public interface Linguagem {
 			return esq.getValor() >= dir.getValor();
 		}
 	}
-
+	//Q6
+	public class ExpDiferente extends ExpRel{
+		public ExpDiferente(Expressao esq, Expressao dir) {
+			super(esq, dir);
+		}
+		@Override
+		public boolean getValor() {
+			return esq.getValor() != dir.getValor();
+		}
+	}
 
 	class Se implements Comando {
 		private Bool condicao;
